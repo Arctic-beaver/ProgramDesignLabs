@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabsConsole", "LabsConsole\LabsConsole.csproj", "{08700457-6FD9-462C-A9A1-69F9008E02C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabsLogic", "LabsLogic\LabsLogic.csproj", "{C6FFB55D-6F73-4CC4-9F52-F3F6DDCDE424}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08700457-6FD9-462C-A9A1-69F9008E02C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08700457-6FD9-462C-A9A1-69F9008E02C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08700457-6FD9-462C-A9A1-69F9008E02C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08700457-6FD9-462C-A9A1-69F9008E02C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6FFB55D-6F73-4CC4-9F52-F3F6DDCDE424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6FFB55D-6F73-4CC4-9F52-F3F6DDCDE424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6FFB55D-6F73-4CC4-9F52-F3F6DDCDE424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6FFB55D-6F73-4CC4-9F52-F3F6DDCDE424}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FCBD665-4428-4019-A3E8-C56A8951BE77}
+	EndGlobalSection
+EndGlobal
