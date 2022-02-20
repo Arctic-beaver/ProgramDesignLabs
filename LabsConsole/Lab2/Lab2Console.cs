@@ -35,16 +35,25 @@ namespace LabsConsole
 			matrixCoef = new double[x.Count, x.Count];
 		}
 
-		public void FillMatrix(List<double> x)
+		public void DoLab2()
+        {
+			FillMatrix();
+			FindCoefficients();
+			Polynomial resultPolynomial = CreateResultPolynomial();
+            Console.WriteLine("Ваш полином: ");
+            Console.WriteLine(resultPolynomial.ToString());
+		}
+
+		private void FillMatrix()
 		{
 			for (int i = 0; i < amountOfValues; i++)
             {
-				for (int j = 0; j < amountOfValues; i++)
+				for (int j = 0; j < amountOfValues; j++)
                 {
 					if (i == j)
 					{
 						matrixCoef[i, j] = -enteredX[i]; //это диагональ
-						diagPolynomial[i] = new Polynomial(new List<double> { 1, -enteredX[i] });
+						diagPolynomial.Add( new Polynomial(new double[] {1, -enteredX[i] }));
 					}
 					else
 					{
@@ -54,7 +63,7 @@ namespace LabsConsole
             }
 		}
 
-		public void FindCoefficients()
+		private void FindCoefficients()
         {
 			for (int i = 0; i < amountOfValues; i++)  //коэффициентов будет столько же, сколько и строк в матрице
 			{
@@ -65,7 +74,7 @@ namespace LabsConsole
 
 				for (int j = 0; j < diagPolynomial.Count; j++)
                 {
-					if (i != j) tmp = tmp.MultiplyPolynomial(tmp, diagPolynomial[j]);
+					if (i != j) tmp = Polynomial.MultiplyPolynomial(tmp, diagPolynomial[j]);
                 }
 
 				coefficient.NumeratorPolinom = tmp;
@@ -82,11 +91,36 @@ namespace LabsConsole
 				coefficient.Denominator = multipledDenominator;
 
 				//занесём коэффициент в список
-				coefficients[i] = coefficient;
+				coefficients.Add(coefficient);
 			}
 		}
 
+		private Polynomial CreateResultPolynomial()
+        {
+			//здесь нам нужен лист коэффициентов и значения y
+			//домножим каждый коэффициент на соответствующий y
 
+			//+ найдём на что нужно домножать все коэффициенты
+			double NOK = 1;
+			for (int i = 0; i < amountOfValues; i++)
+            {
+				coefficients[i].NumeratorPolinom = Polynomial
+					.MultiplyPolynomialAndValue(coefficients[i].NumeratorPolinom, enteredY[i]);
+				NOK = MathHelper.Nok(coefficients[i].Denominator, NOK);
+			}
+
+			//домножим все коэффициенты на нок, получим сумму полиномов, просуммируем
+			Polynomial resultPolynomial = new Polynomial();
+			for (int i = 0; i < amountOfValues; i++)
+			{
+				double value = NOK / coefficients[i].Denominator;
+				coefficients[i].NumeratorPolinom = Polynomial
+					.MultiplyPolynomialAndValue(coefficients[i].NumeratorPolinom, value);
+				resultPolynomial = Polynomial.SummPolynomial(resultPolynomial, coefficients[i].NumeratorPolinom);
+			}
+
+			return resultPolynomial;
+		}
 
     }
 }

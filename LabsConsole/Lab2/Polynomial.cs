@@ -8,26 +8,43 @@ namespace LabsConsole.Lab2
 {
     public class Polynomial
     {
-		List<double> coefficients;
-
-		public Polynomial(List<double> givenCoefficients)
-        {
-			coefficients = givenCoefficients;
-        }
+		double[] coefficients;
+		int filledLen;
 
 		public Polynomial()
 		{
-			coefficients = new List<double>();
+			coefficients = new double[10];
+			filledLen = 0;
 		}
-
-		public int Count()
-        {
-			return coefficients.Count;
-		}
-
-		public Polynomial SummPolynomial(Polynomial a, Polynomial b)
+		public Polynomial(double[] coefs)
 		{
-			Polynomial result = new Polynomial(new List<double>());
+			coefficients = new double[10];
+			filledLen = 0;
+			for (int i = 0; i < coefs.Length; i++)
+            {
+				coefficients[i] = coefs[i];
+            }
+		}
+
+		public override string ToString()
+        {
+			string result = string.Empty;
+			for (int i = Count(); i > 0; i--)
+            {
+				result = $"{Math.Round(coefficients[i], 4)}*x^{Count() - i} + {result}";
+            }
+
+            return result;
+        }
+
+        public int Count()
+        {
+			return filledLen;
+		}
+
+		public static Polynomial SummPolynomial(Polynomial a, Polynomial b)
+		{
+			Polynomial result = new Polynomial();
 
 			int idxMax = Math.Max(a.Count(), b.Count());
 
@@ -50,22 +67,30 @@ namespace LabsConsole.Lab2
 			return result;
 		}
 
-		public Polynomial MultiplyPolynomial(Polynomial a, Polynomial b)
+		public static Polynomial MultiplyPolynomial(Polynomial a, Polynomial b)
 		{
-			Polynomial result = new Polynomial(new List<double>());
+			Polynomial result = new Polynomial();
+			
+			if (a.Count() == 0)
+            {
+				return b;
+            }
+			if (b.Count() == 0)
+			{
+				return a;
+			}
 
 			for (int i = 0; i < a.Count(); i++)
             {
-				Polynomial tmp = new Polynomial(new List<double>());
-				tmp = MultiplyPolynomialAndValue(b, a.coefficients[i]);
+				var tmp = MultiplyPolynomialAndValue(b, a.coefficients[i]);
 				result = SummPolynomial(tmp, result);
 			}
 			return result;
 		}
 
-		public Polynomial MultiplyPolynomialAndValue(Polynomial a, double k)
+		public static Polynomial MultiplyPolynomialAndValue(Polynomial a, double k)
 		{
-			Polynomial result = new Polynomial(new List<double>());
+			Polynomial result = new Polynomial();
 
 			for (int i = 0; i < a.Count(); i ++)
             {

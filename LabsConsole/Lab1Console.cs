@@ -40,6 +40,30 @@
             dF = ConcreteRelativeError();
             DF = Math.Abs(F) * dF; //абсолютная
         }
+    
+        public void DoLab1()
+        {
+            // находим относительную погрешность для S
+            // находим относительную и абсолюную погрешность для F и сам F
+            // выводим
+
+            Console.WriteLine($" Относительная погрешность для S: {dS}");
+            Console.WriteLine($" Относительная погрешность для F: {dF}");
+
+            Console.WriteLine($" F = {C} * {A} * {P} * {V}^2 * {S} = {F}");
+
+            int roundNumber = Lenght(DF) - 2; // это до скольки знаков округляем
+            if (roundNumber < 0) roundNumber = 0; // в таком случае округляем до целого
+
+            int degree = Lenght(F) - 1; // степень 10
+            F /= Math.Pow(10, degree);
+            Math.Round(F, roundNumber);
+
+            int degreeN = Lenght(DF) - 1; // степень 10
+            DF /= Math.Pow(10, degreeN);
+            Math.Round(DF, roundNumber);
+            Console.WriteLine($" Тогда ответ: F = {F} * 10^{degree} +- {DF} * 10^{degree}");
+        }
 
         private void CountF()
         {
@@ -70,30 +94,6 @@
                 value /= 10;
             }
             return i;
-        }
-
-        public void DoLab1()
-        {
-            // находим относительную погрешность для S
-            // находим относительную и абсолюную погрешность для F и сам F
-            // выводим
-
-            Console.WriteLine($" Относительная погрешность для S: {dS}");
-            Console.WriteLine($" Относительная погрешность для F: {dF}");
-
-            Console.WriteLine($" F = {C} * {A} * {P} * {V}^2 * {S} = {F}");
-
-            int roundNumber = Lenght(DF) - 2; // это до скольки знаков округляем
-            if (roundNumber < 0) roundNumber = 0; // в таком случае округляем до целого
-
-            int degree = Lenght(F) - 1; // степень 10
-            F /= Math.Pow(10, degree);
-            Math.Round(F, roundNumber);
-
-            int degreeN = Lenght(DF) - 1; // степень 10
-            DF /= Math.Pow(10, degreeN);
-            Math.Round(DF, roundNumber);
-            Console.WriteLine($" Тогда ответ: F = {F} * 10^{degree} +- {DF} * 10^{degree}");
         }
     }
 }
