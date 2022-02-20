@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LabsConsole.Lab2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,25 +10,12 @@ namespace LabsConsole
     public class Coefficient
     {
         public double Denominator { get; set; } //Знаменатель
-        public List<double> NumeratorPolinom { get; set; } //Числитель в виде a0 = num[0], a1 = num[1]...
+        public Polynomial NumeratorPolinom { get; set; } //Числитель
 
-        public Coefficient(List<double> x)
+        public Coefficient()
         {
             Denominator = new double();
-            NumeratorPolinom = new List<double>();        
-
-            CountDenominator(x);
-            CountNumerator(x);
-        }
-
-        public void CountDenominator(List<double> x)
-        {
-
-        }
-
-        public void CountNumerator(List<double> x)
-        {
-
+            NumeratorPolinom = new Polynomial();        
         }
     }
 }

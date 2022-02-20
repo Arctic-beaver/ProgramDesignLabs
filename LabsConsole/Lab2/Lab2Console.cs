@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LabsConsole.Lab2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,8 @@ namespace LabsConsole
 
 		List<double> enteredX;
 		List<double> enteredY;
-		List<double> coefficients;
-		List<double> diagCoef;
+		List<Coefficient> coefficients;
+		List<Polynomial> diagPolynomial;
 
 		private int amountOfValues; //размер многочлена равен amountOfValues - 1
 
@@ -26,11 +27,11 @@ namespace LabsConsole
         {
 			enteredX = x;
 			enteredY = y;
-			diagCoef = new List<double>();
+			diagPolynomial = new List<Polynomial>();
 
 			amountOfValues = Math.Min(enteredY.Count, enteredX.Count);
 
-			coefficients = new List<double>();
+			coefficients = new List<Coefficient>();
 			matrixCoef = new double[x.Count, x.Count];
 		}
 
@@ -43,7 +44,7 @@ namespace LabsConsole
 					if (i == j)
 					{
 						matrixCoef[i, j] = -enteredX[i]; //это диагональ
-						diagCoef[i] = -enteredX[i];
+						diagPolynomial[i] = new Polynomial(new List<double> { 1, -enteredX[i] });
 					}
 					else
 					{
@@ -55,9 +56,33 @@ namespace LabsConsole
 
 		public void FindCoefficients()
         {
-			for (int i = 0; i < amountOfValues; i++)
+			for (int i = 0; i < amountOfValues; i++)  //коэффициентов будет столько же, сколько и строк в матрице
 			{
+				var coefficient = new Coefficient();
+				Polynomial tmp = new Polynomial();
 				
+				//найдём числитель коэффициента 
+
+				for (int j = 0; j < diagPolynomial.Count; j++)
+                {
+					if (i != j) tmp = tmp.MultiplyPolynomial(tmp, diagPolynomial[j]);
+                }
+
+				coefficient.NumeratorPolinom = tmp;
+
+				//найдём знаменатель коэффициента
+
+				double multipledDenominator = 1;
+
+				for (int j = 0; j < amountOfValues; j++)
+                {
+					if (i != j) multipledDenominator *= matrixCoef[i, j]; 
+				}
+
+				coefficient.Denominator = multipledDenominator;
+
+				//занесём коэффициент в список
+				coefficients[i] = coefficient;
 			}
 		}
 

@@ -15,6 +15,11 @@ namespace LabsConsole.Lab2
 			coefficients = givenCoefficients;
         }
 
+		public Polynomial()
+		{
+			coefficients = new List<double>();
+		}
+
 		public int Count()
         {
 			return coefficients.Count;
