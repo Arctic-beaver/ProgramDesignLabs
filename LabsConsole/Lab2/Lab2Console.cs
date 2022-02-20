@@ -16,8 +16,9 @@ namespace LabsConsole
 		List<double> enteredX;
 		List<double> enteredY;
 		List<double> coefficients;
+		List<double> diagCoef;
 
-		private int amountOfValues;
+		private int amountOfValues; //размер многочлена равен amountOfValues - 1
 
 		public double[,] matrixCoef { get; set; }
 
@@ -25,6 +26,7 @@ namespace LabsConsole
         {
 			enteredX = x;
 			enteredY = y;
+			diagCoef = new List<double>();
 
 			amountOfValues = Math.Min(enteredY.Count, enteredX.Count);
 
@@ -38,13 +40,25 @@ namespace LabsConsole
             {
 				for (int j = 0; j < amountOfValues; i++)
                 {
-					if (i == j) matrixCoef[i, j] = -enteredX[i]; //это диагональ
+					if (i == j)
+					{
+						matrixCoef[i, j] = -enteredX[i]; //это диагональ
+						diagCoef[i] = -enteredX[i];
+					}
 					else
-                    {
+					{
 						matrixCoef[i, j] = enteredX[i] - enteredX[j];
 					}
                 }
             }
+		}
+
+		public void FindCoefficients()
+        {
+			for (int i = 0; i < amountOfValues; i++)
+			{
+				
+			}
 		}
 
 
