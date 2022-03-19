@@ -11,7 +11,8 @@ Lab2Console lab2 = new Lab2Console(new double[]{ 1.45, 1.36, 1.14 },
 
 //lab2.DoLab2();
 
-Lab3Console lab3 = new Lab3Console(new double[] { 1.01, 1.08, 1.11, 1.21, 1.26, 1.33, 1.46, 1.51 },
-    new double[] { 12.6183, 12.7644, 12.9122, 13.0617, 13.2130, 13.3660, 13.5207, 13.8357 }, 1.488);
+Lab3Console lab3 = new Lab3Console(new double[] { 3.50, 4.55, 5.60, 6.20, 7.75, 8.80, 9.45, 10.95 },
+    new double[] { 33.1154, 34.8133, 36.5982, 38.4747, 40.4473, 42.5211, 44.7012, 46.9931 }, 7.213);
 
 lab3.DoLab3();
+

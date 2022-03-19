@@ -21,11 +21,10 @@ namespace LabsConsole
             Algorithm();
             WritePolynomial();
         }
-
-        private void WritePolynomial()
+        public void WritePolynomial()
         {
             string result = string.Empty;
-            
+
             for (int i = amountOfElements - 1; i > 0; i--)
             {
                 if (L[i] != 0)
