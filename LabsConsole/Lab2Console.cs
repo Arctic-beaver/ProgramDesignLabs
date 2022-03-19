@@ -21,6 +21,7 @@ namespace LabsConsole
             Algorithm();
             WritePolynomial();
         }
+
         public void WritePolynomial()
         {
             string result = string.Empty;

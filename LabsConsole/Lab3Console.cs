@@ -29,7 +29,39 @@ namespace LabsConsole
         {
 			FillTableOffDifferences();
 			CountCoefficients();
-			MathHelper.WritePolynomial(coefficients, amountOfElements);
+			WritePolynomial();
+			Console.WriteLine($"f({xt}) = {Math.Round(FindYt(), 3)}");
+        }
+
+		private void WritePolynomial()
+		{
+			string result = string.Empty;
+
+			for (int i =0; i < amountOfElements; i++)
+			{
+				if (coefficients[i] != 0)
+				{
+					var num = Math.Round(coefficients[i], 3);
+					if (num >= 0)
+					{
+						if (i != 0) result += " + ";
+					}
+					else result += " - ";
+					result += $"{Math.Abs(num)} * x^{i}";
+				}
+			}
+			Console.WriteLine("Ваш полином: ");
+			Console.WriteLine(result);
+		}
+
+		private double FindYt()
+        {
+			double yt = 0;
+			for (int i = 0; i < amountOfElements; i++)
+            {
+				yt += Math.Pow(xt, i) * coefficients[i];
+            }
+			return yt;
         }
 
 		void FillTableOffDifferences()
